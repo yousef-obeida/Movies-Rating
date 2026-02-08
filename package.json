@@ -1,0 +1,13 @@
+{
+  "name": "artisans-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix vuetify-project",
+    "build": "npm run build --prefix vuetify-project",
+    "lint": "npm run lint --prefix vuetify-project",
+    "preview": "npm run preview --prefix vuetify-project"
+  },
+  "dependencies": {
+    "axios": "^1.13.4"
+  }
+}
