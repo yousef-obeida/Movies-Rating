@@ -1,20 +1,17 @@
 import axios from 'axios'
-import { ca } from 'vuetify/locale'
 
-// Supports either a v4 Bearer token (preferred) or a v3 API key.
-const v4Token = import.meta.env.VITE_TMDB_API_BEARER
+// Supports a v3 API key.
 const v3Key = import.meta.env.VITE_TMDB_API_KEY
 
-if (!v4Token && !v3Key) {
-  console.warn('TMDB API key missing: set VITE_TMDB_API_BEARER (v4) or VITE_TMDB_API_KEY (v3)')
+if (!v3Key) {
+  console.warn('TMDB API key missing: set VITE_TMDB_API_KEY (v3)')
 }
 
 const tmdbClient = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
-  timeout: 1000,
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
-    ...(v4Token ? { Authorization: `Bearer ${v4Token}` } : {}),
   },
   params: {
     language: 'en-US',
@@ -40,7 +37,7 @@ export async function getGenres () {
   return data?.genres || []
 }
 
-function normalizeMovie(movie) {
+function normalizeMovie (movie) {
   return {
     id: movie.id,
     title: movie.title,

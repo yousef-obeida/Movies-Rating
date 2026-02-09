@@ -1,9 +1,10 @@
 <template>
+  <Header></Header>
   <v-img
     class="fill-height"
     cover
     height="100vh"
-    src="../../public/HomeWallpaper.jpg"
+    src="../../public/HomeWallpaper.png"
   >
     <div class="d-flex flex-column justify-center align-center h-100 w-100 bg-black-overlay">
       <v-container class="text-center">
@@ -39,9 +40,13 @@
       </v-container>
     </div>
   </v-img>
+  <Footer></Footer>
 </template>
 
 <script setup>
+import Header from '@/layouts/Header.vue';
+import Footer from '@/layouts/Footer.vue';
+
   const stats = [
     { name: 'Movies', value: '300+' },
     { name: 'TV shows', value: '200+' },
@@ -52,5 +57,7 @@
 <style scoped>
 .bg-black-overlay {
   background: rgba(0, 0, 0, 0.4);
+}.home-wallpaper :deep(img) {
+  object-position: top !important;
 }
 </style>

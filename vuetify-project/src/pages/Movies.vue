@@ -1,4 +1,5 @@
 <template>
+  <Header></Header>
   <v-container
     class="bg-blue-grey-darken-4 fill-height py-16"
     fluid
@@ -52,10 +53,10 @@
                 title="All Categories"
                 @click="selectedGenreId = null"
               />
-              <v-list-item 
-                v-for="genre in genres" 
-                :key="genre.id" 
-                link 
+              <v-list-item
+                v-for="genre in genres"
+                :key="genre.id"
+                link
                 :title="genre.name"
                 @click="selectedGenreId = genre.id"
               />
@@ -114,12 +115,15 @@
       </v-row>
     </v-responsive>
   </v-container>
+  <Footer></Footer>
 </template>
 
 <script setup>
   import { computed, onMounted, ref, watch } from 'vue'
   import SearchBar from '@/components/searchBar.vue'
   import { getGenres, getPopularMovies, searchMovies } from '@/services/api'
+import Header from '@/layouts/Header.vue'
+import Footer from '@/layouts/Footer.vue'
 
   const movies = ref([])
   const genres = ref([])
@@ -177,8 +181,8 @@
     await fetchMovies()
     try {
       genres.value = await getGenres()
-    } catch (e) {
-      console.warn('Failed to load genres', e)
+    } catch (error) {
+      console.warn('Failed to load genres', error)
     }
   })
 </script>
