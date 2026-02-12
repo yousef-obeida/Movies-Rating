@@ -3,6 +3,7 @@
  *
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
+import { createPinia } from 'pinia'
 
 // Composables
 import { createApp } from 'vue'
@@ -19,5 +20,7 @@ import 'unfonts.css'
 const app = createApp(App)
 
 registerPlugins(app)
+
+app.use(createPinia())
 
 app.mount('#app')

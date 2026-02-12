@@ -91,15 +91,23 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { auth } from '@/services/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuthStore } from '@/stores/Dashboard';
 
 const email = ref(import.meta.env.VITE_ADMIN_EMAIL);
 const password = ref(import.meta.env.VITE_ADMIN_PASSWORD);
 const router = useRouter();
+const authStore = useAuthStore();
 
 const signin = async () => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
     console.log("Successfully signed in!", userCredential.user);
+    
+    authStore.login({
+      ...userCredential.user,
+      role: 'admin'
+    });
+
     router.push('/dashboard');
   } catch (error) {
     console.error("Error signing in:", error.code, error.message);
