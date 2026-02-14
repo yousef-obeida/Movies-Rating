@@ -41,13 +41,9 @@
 import Header from '@/layouts/Header.vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/Dashboard';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/services/firebase';
 import { getStats, getUsers } from '@/services/Adminapi';
 import { ref, onMounted } from 'vue';
 
-const router = useRouter();
-const authStore = useAuthStore();
 
 const stats = ref([
   { title: 'Total Visitors', value: '-' },
@@ -70,13 +66,4 @@ onMounted(async () => {
   }
 });
 
-const logout = async () => {
-  try {
-    await signOut(auth);
-    authStore.logout();
-    router.push('/');
-  } catch (error) {
-    console.error('Logout error:', error);
-  }
-};
 </script>

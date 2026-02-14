@@ -13,7 +13,7 @@
           Discover and share your favorite movies with our vibrant community. Explore reviews, ratings, and recommendations to find your next cinematic adventure
         </p>
 
-        <v-btn
+        <v-btn v-if="!authStore.isAdmin"
           class="mb-10 px-8 font-weight-bold"
           color="white"
           rounded="pill"
@@ -46,6 +46,9 @@
 <script setup>
 import Footer from '@/layouts/Footer.vue'
 import Header from '@/layouts/Header.vue'
+import { useAuthStore } from '@/stores/Dashboard'
+
+  const authStore = useAuthStore()
 
   const stats = [
     { name: 'Movies', value: '300+' },

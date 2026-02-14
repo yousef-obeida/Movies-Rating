@@ -37,3 +37,17 @@
   'opsz' 24;
 }
 </style>
+
+<script setup> 
+import { signOut } from 'firebase/auth';
+import { auth } from '@/services/firebase';
+import HeaderButtons from '@/components/HeaderButtons.vue'; 
+const logout = async () => {
+  try {
+    await signOut(auth);
+    authStore.logout();
+    router.push('/');
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
+};</script>
